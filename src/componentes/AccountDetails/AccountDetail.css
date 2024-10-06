@@ -1,0 +1,112 @@
+/* AccountDetail.css */
+
+.account-details__container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.account-details__container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.account-details__container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-details__container label {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #555;
+  font-weight: 500;
+}
+
+.account-details__container input[type="text"],
+.account-details__container input[type="email"],
+.account-details__container input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.account-details__container input[type="text"]:focus,
+.account-details__container input[type="email"]:focus,
+.account-details__container input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.account-details__container button {
+  padding: 12px 18px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.account-details__container button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.account-details__container button:active {
+  background-color: #004494;
+  transform: translateY(0);
+}
+
+.account-details__container .password-verification {
+  background-color: #f0f4f7;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.account-details__container .password-verification input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.account-details__container .password-verification button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.account-details__container .password-verification button:hover {
+  background-color: #218838;
+}

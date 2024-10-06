@@ -1,0 +1,10 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Varela+Round&display=swap&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+/* ICONS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat";
+}

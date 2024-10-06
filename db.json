@@ -1,0 +1,320 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "DELMETRIN 2.50 EC",
+      "descripcion": "Insecticida piretroide líquido Concentrado Emulsionable (EC) a base de Deltametrina al 2.50% p/v, excelente para aplicación de choque y acción inmediata (KNOCK DOWN) sobre todo tipo de insectos rastreros y voladores en todos los ambientes.",
+      "precio": 19.700,
+      "cantidad_disponible": "5",
+      "categoria": "Insectos",
+      "plagas": "Mosquitos de los géneros Anopheles y Culex, mosquitos de las especies Aedes aegypti y Aedes albopictus, Flebótomos, Pito o chinche besucona, jejenes, pulgas, cucarachas, moscas, arañas, lepismas, piojos, escorpiones, chinches, coquitos (Alphitobius diaperinus), garrapatas, escarabajos, gorgojos, hormigas, plagas de los granos almacenados, termitas del suelo y de la madera entre otros.",
+      "dosis": "Dilúyase en agua o en solventes como ACPM, aceite mineral, varsol o kerosene para aplicar por aspersión o nebulización de forma manual o a motor. Infestaciones altas (choque): 10 ml / litro de agua para cubrir de 15 a 20 m2. Infestaciones bajas (mantenimiento): 5 ml / litro de agua para cubrir de 15 a 20 m2. Explotaciones avícolas: 10 ml / litro de agua para cubrir de 8 a 10 m2 en aspersión de gota gruesa para control de Alphitobius diaperinus (coquito o panzer). 3 ml / litro de agua para aplicar por aspersión sobre aves en control de ácaros, piojos y pulgas. Explotaciones pecuarias: 5 ml / litro de agua para aplicar por aspersión como baño garrapaticida sobre los animales. Caninos: 4 ml / litro de agua para aplicar como pulguicia y garrapaticida. Permita que el producto actúe por 10 minutos en el canino y luego enjuague.",
+      "presentaciones": {
+        "1": "Garrafa x 20Lt",
+        "2": "Botella x 1Lt",
+        "3": "Botella x 0.5Lt",
+        "4": "Frascos x 80ml",
+        "5": "Frasco x 25ml"
+      },
+      "imagen": "/images/products/delmetrin250.png"
+    },
+    {
+      "id": "2",
+      "nombre": "ZOORAT pellets",
+      "descripcion": "Cebo rodenticida coumarínico pelletizado a base de Brodifacouma al 0.005%, anticoagulante de segunda generación específico para el control de todas las especies de roedores-plaga en interiores o recintos cubiertos, en todos los ambientes.",
+      "precio": 136.700,
+      "cantidad_disponible": "5",
+      "categoria": "Roedores",
+      "plagas": "Rata de techo (Rattus rattus) Rata de alcantarilla (Rattus norvégicus) Ratón casero (Mus músculus) Rata arrocera (Oryzomys sp) Rata de agua (Holochilus sp) Ratón de la caña (Sigmodon sp) Ratón de campo (Zigodontomys sp)",
+      "dosis": "Campañas masivas de control de roedores: En promedio se aplican 50 gramos por vivienda. Aplicaciones agropecuarias: De 2 a 3 Kg por hectárea. Coloque de 5 a 10 gramos de ZOORAT ®, Pellets, cada 5 metros lineales por sitio de aplicación. En infestaciones altas debe repetirse la aplicación cada semana hasta que cese el consumo con monitoreo en los focos de infestación, complementando siempre con acciones de mejoramiento ambiental. ",
+      "presentaciones": {
+        "1": "Caneca x 10Kg",
+        "2": "Tarro x 2.5Kg",
+        "3": "Tarro x 1Kg",
+        "4": "Sobre x 50g",
+        "5": "Sobre x 20g",
+        "6": "Sobre x 10g"
+      },
+      "imagen": "/images/products/zoorat-pellets.png"
+    },
+    {
+      "id": "3",
+      "nombre": "ZOORAT bloques",
+      "descripcion": "Cebo rodenticida coumarínico en bloques de parafina de 3g a base de Brodifacouma al 0.005%, anticoagulante de segunda generación específico para el control de todas las especies de roedores-plaga en exteriores a la intemperie, en todos los ambientes.",
+      "precio": 136.700,
+      "cantidad_disponible": "5",
+      "categoria": "Roedores",
+      "plagas": "Rata de techo (Rattus rattus) Rata de alcantarilla (Rattus norvégicus) Ratón casero (Mus músculus) Rata arrocera (Oryzomys sp) Rata de agua (Holochilus sp) Ratón de la caña (Sigmodon sp) Ratón de campo (Zigodontomys sp)",
+      "dosis": "Campañas masivas de control de roedores: En promedio se aplican 50 gramos por vivienda. Aplicaciones agropecuarias: De 2 a 3 Kg por hectárea. Coloque 2 o 3 bloques de ZOORAT ®, Bloques, cada 5 metros lineales por sitio de aplicación. En infestaciones altas debe repetirse la aplicación cada semana hasta que cese el consumo con monitoreo en los focos de infestación, complementando siempre con acciones de mejoramiento ambiental. ",
+      "presentaciones": {
+        "1": "Caneca x 10Kg",
+        "2": "Tarro x 2.5Kg",
+        "3": "Tarro x 1kg"
+      },
+      "imagen": "/images/products/zoorat-bloques.png"
+    },
+    {
+      "id": "4",
+      "nombre": "ZOORAT gel",
+      "descripcion": "Cebo rodenticida coumarínico en pasta gelatinosa a base de Brodifacouma al 0.015%, anticoagulante de segunda generación específico para controlar todas las especies de roedores-plaga en todos los ambientes, en sitios secos o donde los roedores no encuentran disponibilidad de agua para beber permanentemente. Rinde tres veces más que cualquier otro rodenticida.",
+      "precio": 14.800,
+      "cantidad_disponible": "5",
+      "categoria": "Roedores",
+      "plagas": "Rata de techo (Rattus rattus) Rata de alcantarilla (Rattus norvégicus) Ratón casero (Mus músculus) Rata arrocera (Oryzomys sp) Rata de agua (Holochilus sp) Ratón de la caña (Sigmodon sp) Ratón de campo (Zigodontomys sp)",
+      "dosis": "PARA OBTENER MAYOR RENDIMIENTO Y MAYOR CUBRIMIENTO DE ÁREA, MEZCLE UNA PARTE DE ZOORAT®, Gel CON DOS PARTES DE AGUA O DOS PARTES DE ALIMENTO Y APLIQUE. Campañas masivas de control de roedores: En promedio se aplican 30 gramos por vivienda. Aplicaciones agropecuarias: De 1 a 1,5 Kg por hectárea. Coloque de 3 a 5 gramos de ZOORAT®, Gel cada 5 metros lineales por sitio de aplicación. En infestaciones altas debe repetirse la aplicación cada semana hasta que cese el consumo.",
+      "presentaciones": {
+        "1": "Colapsible x 100g",
+        "2": "Tarro x 1/0.5Kg",
+        "3": "Tarro x 0.5Kg",
+        "4": "Pote x100g"
+      },
+      "imagen": "/images/products/zoorat-gel.png"
+    },
+    {
+      "id": "5",
+      "nombre": "VAMPIRICIDA ENTQUIM",
+      "precio": 31.700,
+      "descripcion": "Brodifacouma 0.15%, Ungüento Anticoagulante: Moderno Vampiricida desarrollado específicamente para el control eficaz de los murciélagos hematófagos o vampiros, principales transmisores de la Rabia Silvestre o Rabia paralítica bovina en los animales domésticos de sangre caliente.",
+      "cantidad_disponible": "5",
+      "categoria": "Murciélagos",
+      "plagas": "Murciélagos hematófagos (vampiros) de las Especies Desmodus rotundus, Diphylla ecaudata y Diaemus youngii.",
+      "dosis": "Aplicación sobre el vampiro: con una espátula aplique 1 gramo de Vampiricida ENTQUIM® sobre el dorso de cada vampiro. Posteriormente libérelos en horas de la noche, sin lastimarlos. Aprovechando su comportamiento permanente de acicalamiento y aseo mutuo, cada vampiro tratado puede intoxicar de 30 a 50 vampiros. Aplicación sobre el animal afectado: Bajo criterio y vigilancia de un Médico Veterinario, con una espátula aplique 2 gramos de Vampiricida ENTQUIM® en las partes del animal donde se observen mordeduras frescas. Cubra totalmente la herida en un área aproximada de 9 cm2 (3 cm x 3 cm).",
+      "presentaciones": {
+        "1": "Pote x 100g"
+      },
+      "imagen": "/images/products/vampiricida.png"
+    },
+    {
+      "id": "69e8",
+      "nombre": "DELMETRIN MADERA",
+      "precio": 112.600,
+      "descripcion": "Inmunizante Insecticida piretroide líquido Concentrado Emulsionable (EC) a base de Deltametrina al 2.50% p/v, eficaz en la prevención y control de todos los insectos y hongos que atacan las maderas en todos los ambientes.",
+      "cantidad_disponible": "5",
+      "categoria": "Insectos",
+      "plagas": "Insectos xilófagos: hormiga carpintera (Camponotus sp), Comejen (Termites sp), Gorgojo de la guadua (Dinoderus minutus), Termitas del suelo (Reticulitermes sp), Gorgojo de la madera (Criptotermes brevis y Lycteus brunneus) entre otros. Hongos xilófagos: hongo descoloreador (de azuleo), hongo degradador (Aphyllphorales), hongos de putrefacción café (Meruliporia incrassata y Gloeophyllum trabeum) y putrefacción blanca (Trametes versicolor y Trametes hirsuta) entre otros.",
+      "presentaciones": {
+        "1": "Garrafa x 20Lt",
+        "2": "Botella x 1Lt",
+        "3": "Botella x 0.5Lt",
+        "4": "Frasco x 80ml",
+        "5": "Frasco x 32ml"
+      },
+      "imagen": "/images/products/DELMETRIN MADERA.png"
+    },
+    {
+      "id": "66f8",
+      "nombre": "DELMETRIN 10WP",
+      "precio": 107.000,
+      "descripcion": "Insecticida piretroide Polvo Mojable (WP) a base de Deltametrina al 10.0% p/p, que garantiza prolongada acción residual sobre cualquier tipo de superficie, específico para el control de todos los insectos rastreros y voladores en todos los ambientes.",
+      "cantidad_disponible": "5",
+      "categoria": "Insectos",
+      "plagas": "Mosquitos de los géneros Anopheles y Culex, mosquitos de las especies Aedes aegypti y Aedes albopictus, Flebótomos, Pito o chinche besucona, jejenes, pulgas, cucarachas, moscas, arañas, lepismas, piojos, escorpiones, chinches, coquitos (Alphitobius diaperinus), garrapatas, escarabajos, gorgojos, hormigas, plagas de los granos almacenados, termitas del suelo y de la madera entre otros.",
+      "presentaciones": {
+        "1": "Tarro x 400g",
+        "2": "Tarro x 200g",
+        "3": "Frasco x 25g"
+      },
+      "imagen": "/images/products/delmetrin10WP.png"
+    },
+    {
+      "id": "7c13",
+      "nombre": "DESTRONER 1SG",
+      "precio": 24.100,
+      "descripcion": "Insecticida - larvicida organofosforado residual en gránulos de arena a base de Temephos al 1.0%, específico para el control de larvas de los mosquitos transmisores del Dengue y la Fiebre Amarilla, y larvas de moscas en materia orgánica en estercoleras en todos los ambientes.",
+      "cantidad_disponible": "5",
+      "categoria": "Larvas",
+      "plagas": "Larvas de mosquitos de los géneros Culex spp, Anopheles spp, Aedes, Simulium, Psorophora, Uliseta y Mansonia. Larvas de moscas de varias especies pertenecientes al orden Díptera",
+      "presentaciones": {
+        "1": "Caneca x 25Kg",
+        "2": "Tarro x 1Kg"
+      },
+      "imagen": "/images/products/destroner-1sg.png"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "0aed",
+      "nombre": "Joan",
+      "apellido": "Fontechaa",
+      "correo": "joaaan.fontechaa@gmail.com",
+      "password": "1028482746?Joan",
+      "rol": "Administrador"
+    },
+    {
+      "nombre": "Narly",
+      "apellido": "Sanchez",
+      "correo": "narlysanchez@gmail.com",
+      "password": "123456a?",
+      "rol": "Administrador",
+      "id": "0eb7"
+    },
+    {
+      "id": "809e",
+      "nombre": "nana",
+      "apellido": "sanchez",
+      "correo": "n1s@gmail.com",
+      "password": "ns1234567@",
+      "rol": "Usuario"
+    },
+    {
+      "id": "d1db",
+      "nombre": "nana",
+      "apellido": "sanchez",
+      "correo": "n1s@gmail.com",
+      "password": "ns1234567@",
+      "rol": "Usuario"
+    }
+  ],
+  "ventas": [
+    {
+      "id": "2fd0",
+      "fecha": "2024-08-28T22:31:31.426Z",
+      "cliente": "Joan Fontecha",
+      "correo": "joaaan.fontechaa@gmail.com",
+      "total": 20,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "2",
+          "nombre_producto": "ZOORAT pellets",
+          "cantidad": 1,
+          "precio_unitario": 10
+        },
+        {
+          "producto_id": "3",
+          "nombre_producto": "ZOORAT bloques",
+          "cantidad": 1,
+          "precio_unitario": 10
+        }
+      ]
+    },
+    {
+      "id": "6f27",
+      "fecha": "2024-08-28T22:57:22.577Z",
+      "cliente": "Arturito Fernandez",
+      "correo": "arturito.fernandez@gmail.com",
+      "total": 30,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "2",
+          "nombre_producto": "ZOORAT pellets",
+          "cantidad": 1,
+          "precio_unitario": 10
+        },
+        {
+          "producto_id": "3",
+          "nombre_producto": "ZOORAT bloques",
+          "cantidad": 1,
+          "precio_unitario": 10
+        },
+        {
+          "producto_id": "4",
+          "nombre_producto": "ZOORAT gel",
+          "cantidad": 1,
+          "precio_unitario": 10
+        }
+      ]
+    },
+    {
+      "id": "5ba8",
+      "fecha": "2024-08-28T22:57:54.224Z",
+      "cliente": "Arturito Fernandez",
+      "correo": "arturito.fernandez@gmail.com",
+      "total": 30,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "2",
+          "nombre_producto": "ZOORAT pellets",
+          "cantidad": 1,
+          "precio_unitario": 10
+        },
+        {
+          "producto_id": "3",
+          "nombre_producto": "ZOORAT bloques",
+          "cantidad": 1,
+          "precio_unitario": 10
+        },
+        {
+          "producto_id": "4",
+          "nombre_producto": "ZOORAT gel",
+          "cantidad": 1,
+          "precio_unitario": 10
+        }
+      ]
+    },
+    {
+      "id": "bbd5",
+      "fecha": "2024-08-29T02:33:47.380Z",
+      "cliente": "Joan Fontecha",
+      "correo": "joaaan.fontechaa@gmail.com",
+      "total": 200021,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "1",
+          "nombre_producto": "DELMETRIN 2.50 EC",
+          "cantidad": 1,
+          "precio_unitario": 200000
+        },
+        {
+          "producto_id": "69e8",
+          "nombre_producto": "DELMETRIN MADERA",
+          "cantidad": 1,
+          "precio_unitario": 1
+        },
+        {
+          "producto_id": "66f8",
+          "nombre_producto": "DELMETRIN 10WP",
+          "cantidad": 1,
+          "precio_unitario": 1
+        },
+        {
+          "producto_id": "7c13",
+          "nombre_producto": "DESTRONER 1SG",
+          "cantidad": 1,
+          "precio_unitario": 1
+        },
+        {
+          "producto_id": "5",
+          "nombre_producto": "VAMPIRICIDA ENTQUIM",
+          "cantidad": 1,
+          "precio_unitario": 10
+        }
+      ]
+    },
+    {
+      "id": "c38f",
+      "fecha": "2024-09-12T06:16:21.406Z",
+      "cliente": "Joan Fontecha",
+      "correo": "joaaan.fontechaa@gmail.com",
+      "total": 10,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "3",
+          "nombre_producto": "ZOORAT bloques",
+          "cantidad": 1,
+          "precio_unitario": 10
+        }
+      ]
+    },
+    {
+      "id": "bcf2",
+      "fecha": "2024-09-12T17:35:57.278Z",
+      "cliente": "nana sanchez",
+      "correo": "n1s@gmail.com",
+      "total": 30,
+      "estado": "Pendiente",
+      "items": [
+        {
+          "producto_id": "5",
+          "nombre_producto": "VAMPIRICIDA ENTQUIM",
+          "cantidad": 3,
+          "precio_unitario": 10
+        }
+      ]
+    }
+  ]
+}

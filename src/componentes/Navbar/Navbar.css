@@ -1,0 +1,97 @@
+.navbar {
+    width: 100%;
+    position: sticky;
+    z-index: 100;
+    top: 70px;
+}
+
+.navbar__box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    gap: 40px;
+    padding: 0 100px;
+    background-color: #fff;
+}
+
+.menu-icon, .search-icon {
+    width: 40px;
+    cursor: pointer;
+    transition: transform 20s ease-in-out; /* Añadir transición suave */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav__search-bar {
+    width: 70%;
+    height: 30px;
+    padding: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0000000a;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Añadir transición suave */
+}
+
+.nav__search-bar:hover {
+    background-color: #00000010;
+}
+
+/* Estilo para el estado focus */
+.nav__search-bar:focus {
+    outline: none; /* Elimina el borde por defecto */
+    background-color: #fff; /* Cambia el fondo al hacer clic */
+    box-shadow: 0 0 10px .5px #14a2c944; /* Añade una sombra suave para un efecto más estético */
+}
+
+/* Estilo para el contenedor del menú desplegable */
+/* Ocultar el menú por defecto */
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
+    max-height: 0; /* Altura inicial en 0 */
+    opacity: 0; /* Transparencia inicial */
+    overflow: hidden; /* Oculta el contenido cuando está colapsado */
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Añade animación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuando el menú está abierto */
+.dropdown-menu.open {
+    max-height: 300px; /* Ajusta esta altura según tus necesidades */
+    opacity: 1; /* Totalmente visible */
+}
+
+/* Estilo para cada elemento del menú desplegable */
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el hover de cada elemento */
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* Estilo adicional para separar los elementos del menú */
+
+
+/*END NAVBAR SECTION */

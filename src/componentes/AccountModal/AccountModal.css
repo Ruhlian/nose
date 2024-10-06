@@ -1,0 +1,85 @@
+.account-modal {
+    position: fixed;
+    width: 400px;
+    min-height: 150px;
+    max-height: 90vh;
+    background-color: #fff;
+    top: -100%; /* Inicialmente fuera de la pantalla */
+    right: 0;
+    z-index: -1;
+    border-left: #000 1px solid;
+    border-bottom: #000 1px solid;
+    box-shadow: #00000007 10px 15px 15px;
+    border-bottom-left-radius: 15px;
+    transition: top 0.3s ease-in-out; /* Animación de desplazamiento */
+}
+
+.account-modal.show {
+    z-index: -1;
+    top: 90px; 
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.account-modal.close-animation {
+    top: -100%;
+}
+
+.account-modal__content {
+    position: relative;
+    z-index: -1;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-account {
+    letter-spacing: 1px;
+    font-size: 26px;
+}
+
+.account-mail {
+    font-size: 13px;
+}
+
+.account-management {
+    margin-top: 15px;
+}
+
+.management, .account-management {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+    border-bottom: #0000002c 1px solid;
+}
+
+.management {
+    margin-top: 4px;
+}
+
+.logout-button {
+    margin-top: 30px;
+    padding: 5px;
+    background-color: rgb(212, 0, 0);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.logout-button:hover {
+    background-color: rgb(156, 0, 0);
+}
+
+.login-button {
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #14A2C9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}

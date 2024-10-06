@@ -1,0 +1,43 @@
+.category__container {
+    width: 50%;
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+    gap: 35px;
+}
+
+.category {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.category-title {
+    color: #14A2C9;
+    margin-top: 5px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: transform 0.3s ease-in-out; /* Transición para el texto */
+}
+
+.category-image {
+    width: 75px;
+    transition: transform 0.3s ease-in-out; /* Transición para la imagen */
+    position: relative;
+    z-index: 1;
+}
+
+/* Efecto hover: Escalar la caja y su contenido */
+.category:hover {
+    transform: scale(1.1); /* Agranda la caja */
+}
+
+.category:hover .category-title,
+.category:hover .category-image {
+    transform: scale(1.1); /* Agranda el texto y la imagen */
+}
+

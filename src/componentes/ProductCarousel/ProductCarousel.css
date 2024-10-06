@@ -1,0 +1,172 @@
+.product-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%; /* Ancho al 85% */
+    height: 90vh;
+    margin: 0 auto; /* Centramos el carrusel */
+    overflow: hidden;
+}
+
+.carousel__products {
+    margin-top: 35px;
+    display: flex;
+    overflow: hidden;
+    width: 85%;
+    padding: 50px 20px;
+    height: auto; /* Ajustamos la altura para que sea automática */
+}
+
+.carousel__products-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Transición suave */
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between	;
+    width: 270px;
+    height: 400px;
+    padding: 15px;
+    margin: 0 25px;
+    background-color: #fff;
+    border: #00000028 solid .5px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.product.selected {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    border: #0000001c solid 0.2px;
+    box-shadow: #0000001a 0 0 10px 5px;
+}
+
+.product__image {
+    max-width: 125px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+.product-content__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-radius: 15px;
+}
+
+.button-img {
+    width: 30px;
+}
+
+.carousel__button--prev {
+    left: 40px;
+}
+
+.carousel__button--next {
+    right: 40px;
+}
+
+.carousel__button:hover {
+    background-color: #00000005;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.quantity-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0 5px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.quantity-input {
+    width: 65px;
+    height: 25px;
+    text-align: center;
+    border: none;
+    font-size: 15px;
+    -moz-appearance: textfield; /* Para Firefox */
+    -webkit-appearance: none; /* Para Safari y Chrome */
+    appearance: none; /* Para compatibilidad con otros navegadores */
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Quitar el margen para asegurar que desaparezca */
+}
+
+.quantity-input:focus {
+    outline: none;
+}
+
+.add-to-cart-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.add-to-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #14A2C9;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 65px;
+    height: 30px;
+    margin-left: 10px; /* Espacio entre el campo de cantidad y el botón */
+}
+
+.add-to-cart-button:hover {
+    background-color: #1590b3;
+}
+
+.cart-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.stock-info {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    font-weight: 500;
+}

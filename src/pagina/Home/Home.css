@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: "Montserrat", sans-serif; 
+}
+
+/* MAIN SECTION */
+.main__section {
+    width: 100%;
+    padding-bottom: 100px; 
+    background: rgb(255,255,255);
+}

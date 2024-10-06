@@ -1,0 +1,74 @@
+.product-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-form div {
+    margin-bottom: 15px;
+}
+
+.product-form label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-form input,
+.product-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.product-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.product-form input[type="number"] {
+    -moz-appearance: textfield; /* Hide number input spin buttons in Firefox */
+}
+
+.product-form input[type="number"]::-webkit-inner-spin-button,
+.product-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-actions button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-actions button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-actions button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+}
+
+.form-actions button[type="button"]:hover {
+    background-color: #bbb;
+}

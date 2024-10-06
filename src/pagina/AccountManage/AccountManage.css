@@ -1,0 +1,11 @@
+.account-manage-title__container {
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+}
+
+.account-title {
+    color: #14A2C9;
+    font-weight: 400;
+    text-align: center;
+}

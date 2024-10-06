@@ -1,0 +1,77 @@
+
+.sales__container {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+.sales-filters {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sales-filters label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.sales-filters select {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.sales-table thead th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.sales-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.sales-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.sales-table select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.sales-table button {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sales-table button:hover {
+    background-color: #0056b3;
+}
+
+.table__title {
+    color: #000;
+}

@@ -1,0 +1,91 @@
+.welcome__box {
+    position: relative; /* Asegura que el pseudo-elemento se posicione correctamente */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    overflow: hidden; /* Evita que el pseudo-elemento se salga del contenedor */
+}
+
+.welcome__titles--box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Asegura que el contenido esté por encima del fondo desenfocado */
+    z-index: 1;
+}
+
+.welcome__title {
+    font-size: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: #091035;
+}
+
+.welcome__subtitle {
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+    letter-spacing: 2px;
+}
+
+/* END WELCOME SECTION */
+
+.carousel-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 1%, rgba(20,162,201,0) 100%);
+    overflow: hidden; /* Asegura que el desenfoque no se desborde */
+}
+
+.carousel__slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Centra verticalmente las imágenes */
+    justify-content: center; /* Centra horizontalmente las imágenes */
+    overflow: hidden; /* Oculta cualquier desbordamiento de las imágenes */
+}
+
+.carousel__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    transition: opacity 1s ease-in-out; /* Transición de desvanecimiento */
+    opacity: 0; /* Inicialmente oculto */
+}
+
+.carousel__slide.active {
+    opacity: 1; /* Visible cuando la imagen está activa */
+}
+
+.carousel__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 10%, rgba(20,162,201,0) 100%);
+    pointer-events: none; /* Permite que los clics pasen a los elementos de debajo */
+    z-index: 1; /* Asegura que el degradado esté encima de la imagen */
+}
