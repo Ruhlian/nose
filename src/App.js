@@ -11,6 +11,7 @@ import SalesManagement from './pagina/SalesManagement/SalesManagement';
 import ProductManage from './pagina/ProductManage/ProductManage';
 import UserManage from './pagina/UserManage/UserManage';
 import AccountManage from './pagina/AccountManage/AccountManage';
+import AllProducts from './pagina/AllProducts/AllProducts';
 import HeaderManage from './componentes/HeaderManage/HeaderManage';
 import Header from './componentes/Header/Header';
 import ProductDetails from './pagina/ProductDetails/ProductDetails'; 
@@ -53,6 +54,13 @@ function App() {
                 <>
                   <Contact />
                 </>
+              } />
+
+              
+              <Route path="/AllProducts" exact element={
+              <>
+              <AllProducts />
+              </>
               } />
 
               <Route path="/" exact element={
