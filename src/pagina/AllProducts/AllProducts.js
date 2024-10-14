@@ -10,8 +10,8 @@ const AllProducts = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
     const [precioSeleccionado, setPrecioSeleccionado] = useState('');
-    const [precioMin, setPrecioMin] = useState(''); // Nuevo estado para precio mínimo
-    const [precioMax, setPrecioMax] = useState(''); // Nuevo estado para precio máximo
+    const [precioMin, setPrecioMin] = useState('');
+    const [precioMax, setPrecioMax] = useState('');
     const { addToCart } = useCart();
 
     useEffect(() => {
@@ -28,38 +28,26 @@ const AllProducts = () => {
     }, []);
 
     const handleCategoriaClick = (categoria) => {
-        if (categoriaSeleccionada === categoria) {
-            setCategoriaSeleccionada(''); // Desseleccionar si ya está activo
-        } else {
-            setCategoriaSeleccionada(categoria); // Seleccionar la nueva categoría
-        }
+        setCategoriaSeleccionada((prev) => (prev === categoria ? '' : categoria));
     };
 
     const handlePrecioClick = (rango) => {
-        if (precioSeleccionado === rango) {
-            setPrecioSeleccionado(''); // Desseleccionar si ya está activo
-        } else {
-            setPrecioSeleccionado(rango); // Seleccionar el nuevo rango de precio
-        }
+        setPrecioSeleccionado((prev) => (prev === rango ? '' : rango));
     };
 
-    // Filtrar productos
     const productosFiltrados = productos.filter((producto) => {
-        // Filtros de categoría
         if (categoriaSeleccionada === 'Otros') {
             return producto.categoria !== 'Insectos' && producto.categoria !== 'Roedores';
         }
         return categoriaSeleccionada === '' || producto.categoria === categoriaSeleccionada;
     }).filter((producto) => {
-        // Filtros de precio
         if (precioSeleccionado === 'bajo') {
-            return producto.precio < 33; // Rango bajo
+            return producto.precio < 33;
         } else if (precioSeleccionado === 'medio') {
-            return producto.precio >= 33 && producto.precio <= 66; // Rango medio
+            return producto.precio >= 33 && producto.precio <= 66;
         } else if (precioSeleccionado === 'alto') {
-            return producto.precio > 66; // Rango alto
+            return producto.precio > 66;
         }
-        // Filtrar por precios mínimo y máximo
         const minPrice = precioMin !== '' ? parseFloat(precioMin) : 0;
         const maxPrice = precioMax !== '' ? parseFloat(precioMax) : Infinity;
         return producto.precio >= minPrice && producto.precio <= maxPrice;
@@ -72,11 +60,9 @@ const AllProducts = () => {
             <Header />
 
             <div className="allproducts-page">
-                {/* Panel de Filtros Fijo */}
                 <div className="allproducts-filter__container">
                     <h3 className="allproducts-filter__title">Filtrar por</h3>
 
-                    {/* Categorías */}
                     <div className="allproducts-category__filter">
                         <h4>Categoria</h4>
                         <div 
@@ -104,7 +90,6 @@ const AllProducts = () => {
                         </div>
                     </div>
 
-                    {/* Filtro de Precios */}
                     <div className="allproducts-price__filter">
                         <h4>Precio</h4>
                         <div 
@@ -124,7 +109,6 @@ const AllProducts = () => {
                         </div>
                     </div>
 
-                    {/* Filtro de Precio Manual */}
                     <div className="allproducts-price__manual-filter">
                         <h4>Rango de Precio</h4>
                         <div className="allproducts-price__manual-inputs">
@@ -153,7 +137,6 @@ const AllProducts = () => {
                     </div>
                 </div>
 
-                {/* Contenedor de Productos */}
                 <div className="allproducts-products__container">
                     <h2 className="allproducts-products__title">{categoriaTitulo}</h2>
 

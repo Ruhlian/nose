@@ -3,6 +3,7 @@
     display: flex;
     padding: 20px;
     background-color: #f4f4f4;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
 }
 
 .allproducts-filter__container {
@@ -12,6 +13,7 @@
     padding: 15px;
     background-color: #f9f9f9;
     margin-right: 20px; /* Espacio entre la barra lateral y la sección de productos */
+    flex-shrink: 0; /* Evita que la barra lateral se encoja */
 }
 
 .allproducts-filter__title {
@@ -71,6 +73,8 @@
 
 .allproducts-products__container {
     flex-grow: 1; /* Permite que la sección de productos use el espacio restante */
+    display: flex;
+    flex-direction: column; /* Asegura que el contenedor de productos sea una columna */
 }
 
 .allproducts-products__title {
@@ -87,7 +91,7 @@
 
 .allproducts-product__card {
     width: 215px; /* Ancho fijo para que todos los contenedores tengan el mismo tamaño */
-    height: 350px; /* Altura fija para uniformidad */
+    height: 300px; /* Reducir la altura para mayor compacidad */
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 8px; /* Reducción del padding */
@@ -106,21 +110,25 @@
 
 .allproducts-product__image {
     width: 100%; /* Mantener el tamaño de la imagen al 100% del contenedor */
-    height: 180px; /* Altura fija para la imagen */
+    height: 150px; /* Ajustar la altura de la imagen */
     border-radius: 5px;
     object-fit: contain; /* Ajusta la imagen para que no se corte y mantenga su proporción */
     margin: 0 auto; /* Centrar la imagen */
 }
 
 .allproducts-product__title {
-    font-size: 1.1em; /* Reducción del tamaño del texto */
+    font-size: 1.2em; /* Ajustar el tamaño del texto del título */
     margin: 8px 0; /* Ajuste de margen */
     flex-grow: 1; /* Asegura que el título no empuje el botón hacia abajo */
 }
 
 .allproducts-product__price {
-    font-size: 0.9em; /* Reducción del tamaño del precio */
-    color: #14A2C9;
+    font-size: 1.1em; /* Aumentar el tamaño del precio para destacar */
+    font-weight: bold; /* Hacer el precio en negrita */
+    color: #14A2C9; /* Mantener el color azul */
+    background-color: #f0f8ff; /* Fondo claro para resaltar el precio */
+    padding: 5px; /* Añadir un poco de padding alrededor del precio */
+    border-radius: 5px; /* Bordes redondeados para suavizar */
 }
 
 .allproducts-add-to-cart__button {
@@ -136,4 +144,49 @@
 
 .allproducts-add-to-cart__button:hover {
     background: linear-gradient(135deg, #0056b3, #00408b); /* Degradado más oscuro al pasar el mouse */
+}
+
+/* Media Queries para hacer la página responsiva */
+@media (max-width: 1200px) {
+    .allproducts-products {
+        grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en pantallas medianas */
+    }
+
+    .allproducts-filter__container {
+        margin-right: 15px; /* Reducir margen en pantallas medianas */
+    }
+}
+
+@media (max-width: 900px) {
+    .allproducts-products {
+        grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en pantallas pequeñas */
+    }
+
+    .allproducts-filter__container {
+        width: 100%; /* Barra lateral ocupa el 100% */
+        margin-right: 0; /* Sin margen en pantallas pequeñas */
+        margin-bottom: 20px; /* Espacio inferior para separar de los productos */
+    }
+}
+
+@media (max-width: 600px) {
+    .allproducts-products {
+        grid-template-columns: 1fr; /* 1 producto por fila en pantallas muy pequeñas */
+    }
+
+    .allproducts-filter__container {
+        padding: 10px; /* Reducir padding en pantallas pequeñas */
+    }
+
+    .allproducts-filter__title {
+        font-size: 1.3em; /* Reducir tamaño del título en pantallas pequeñas */
+    }
+
+    .allproducts-product__title {
+        font-size: 1em; /* Ajustar el tamaño del texto del título en pantallas pequeñas */
+    }
+
+    .allproducts-product__price {
+        font-size: 1em; /* Ajustar el tamaño del precio en pantallas pequeñas */
+    }
 }
