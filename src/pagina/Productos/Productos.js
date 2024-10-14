@@ -120,7 +120,7 @@ const Productos = () => {
                         )}
                     </div>
                     <div className='product__all-products'>
-                        <Link to="/Productos/Todos">Ver todos{" >"}</Link>
+                        <Link to="../AllProducts">Ver todos{" >"}</Link>
                     </div>
                 </div>
             </div>

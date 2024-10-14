@@ -1,0 +1,139 @@
+/* AllProducts.css */
+.allproducts-page {
+    display: flex;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.allproducts-filter__container {
+    width: 250px; /* Ancho para la barra lateral */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    margin-right: 20px; /* Espacio entre la barra lateral y la sección de productos */
+}
+
+.allproducts-filter__title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.allproducts-category__filter,
+.allproducts-price__filter,
+.allproducts-price__manual-filter {
+    margin-bottom: 15px;
+}
+
+.allproducts-category__item,
+.allproducts-price__item {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.allproducts-category__item.active,
+.allproducts-price__item.active {
+    background-color: #14A2C9;
+    color: white;
+}
+
+.allproducts-price__manual-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.allproducts-price__manual-inputs input {
+    width: 45%; /* Mantiene el ancho de los inputs */
+    padding: 6px; /* Reducción del padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none; /* Quita las flechas de los inputs de número */
+}
+
+.allproducts-price__apply-button {
+    width: 100%;
+    padding: 8px; /* Reducción del padding */
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Degradado azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px; /* Espacio superior para separar del resto */
+}
+
+.allproducts-price__apply-button:hover {
+    background: linear-gradient(135deg, #0056b3, #00408b); /* Degradado más oscuro al pasar el mouse */
+}
+
+.allproducts-products__container {
+    flex-grow: 1; /* Permite que la sección de productos use el espacio restante */
+}
+
+.allproducts-products__title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.allproducts-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Máximo de 4 productos por fila */
+    gap: 15px; /* Espacio entre productos */
+}
+
+.allproducts-product__card {
+    width: 215px; /* Ancho fijo para que todos los contenedores tengan el mismo tamaño */
+    height: 350px; /* Altura fija para uniformidad */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px; /* Reducción del padding */
+    text-align: center;
+    background-color: #fff;
+    transition: box-shadow 0.3s;
+    margin: 0 auto; /* Centrar el contenedor */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que el botón esté al final */
+}
+
+.allproducts-product__card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.allproducts-product__image {
+    width: 100%; /* Mantener el tamaño de la imagen al 100% del contenedor */
+    height: 180px; /* Altura fija para la imagen */
+    border-radius: 5px;
+    object-fit: contain; /* Ajusta la imagen para que no se corte y mantenga su proporción */
+    margin: 0 auto; /* Centrar la imagen */
+}
+
+.allproducts-product__title {
+    font-size: 1.1em; /* Reducción del tamaño del texto */
+    margin: 8px 0; /* Ajuste de margen */
+    flex-grow: 1; /* Asegura que el título no empuje el botón hacia abajo */
+}
+
+.allproducts-product__price {
+    font-size: 0.9em; /* Reducción del tamaño del precio */
+    color: #14A2C9;
+}
+
+.allproducts-add-to-cart__button {
+    width: 100%;
+    padding: 8px; /* Reducción del padding */
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Degradado azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.allproducts-add-to-cart__button:hover {
+    background: linear-gradient(135deg, #0056b3, #00408b); /* Degradado más oscuro al pasar el mouse */
+}
