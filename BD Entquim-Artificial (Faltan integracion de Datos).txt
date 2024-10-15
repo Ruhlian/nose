@@ -1,0 +1,100 @@
+-- Script BD de la pagina Entquim, Se actualizara esta semana para dejarla funcional antes del viernes, faltan datos
+
+CREATE DATABASE IF NOT EXISTS dbentquim;
+USE dbentquim;
+
+
+
+-- Crear tabla Roles
+CREATE TABLE Roles (
+    id_rol INT AUTO_INCREMENT PRIMARY KEY,
+    rol VARCHAR(30) NOT NULL
+);
+
+-- Crear tabla Categoria
+CREATE TABLE Categoria (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Crear tabla Producto
+CREATE TABLE Producto (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    descripcion TEXT,
+    precio DECIMAL(10, 2),
+    stock INT,
+    plagas VARCHAR(20),
+    dosis DECIMAL(10, 2),
+    presentaciones VARCHAR(100),
+    imagen BLOB,
+    id_categoria INT,
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria) ON DELETE SET NULL
+);
+
+-- Crear tabla Usuarios
+CREATE TABLE Usuarios (
+    id_usuarios INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(55),
+    apellido VARCHAR(55),
+    correo VARCHAR(255) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    id_rol INT,
+    FOREIGN KEY (id_rol) REFERENCES Roles(id_rol) ON DELETE SET NULL
+);
+
+-- Crear tabla Venta
+CREATE TABLE Venta (
+    id_venta INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
+    total DECIMAL(10, 2),
+    estado VARCHAR(20),
+    correo VARCHAR(100),
+    id_usuarios INT,
+    FOREIGN KEY (id_usuarios) REFERENCES Usuarios(id_usuarios) ON DELETE SET NULL
+);
+
+-- Crear tabla Detalle_De_Venta
+CREATE TABLE Detalle_De_Venta (
+    id_detalle_venta INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT,
+    id_venta INT,
+    cantidad INT,
+    precio_Unitario DECIMAL(10, 2),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto) ON DELETE CASCADE,
+    FOREIGN KEY (id_venta) REFERENCES Venta(id_venta) ON DELETE CASCADE
+);
+
+-- Crear tabla Carrito
+CREATE TABLE Carrito (
+    id_carrito INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    etado VARCHAR(50) DEFAULT 'activo', -- Estados posibles: 'activo', 'finalizado'
+    creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuarios) ON DELETE CASCADE
+);
+
+-- Crear tabla Carrito_Detalles
+CREATE TABLE Carrito_Detalles (
+    id_detalles_de_carrito INT AUTO_INCREMENT PRIMARY KEY,
+    id_carrito INT,
+    id_producto INT,
+    cantidad INT DEFAULT 1,
+    FOREIGN KEY (id_carrito) REFERENCES Carrito(id_carrito) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto) ON DELETE CASCADE
+);
+
+-- Crear tabla Orden
+CREATE TABLE Orden (
+    id_orden INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuarios INT,
+    fecha DATE,
+    total DECIMAL(10, 2),
+    FOREIGN KEY (id_usuarios) REFERENCES usuarios(id_usuarios) ON DELETE SET NULL
+);
+
+-- Inserciones en Roles
+
+INSERT INTO Roles (rol) VALUES ('Administrador');
+INSERT INTO Roles (rol) VALUES ('Empleado');
+INSERT INTO Roles (rol) VALUES ('Cliente');
