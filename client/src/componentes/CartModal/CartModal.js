@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CartModal.css';
 import { useCart } from '../../context/CartContext/CartContext';
-import { useAuth } from '../../context/AuthContext/AuthContext';
+import {useAuth} from '../../context/AuthContext/AuthContext';
 import axios from 'axios';
 
 const CartModal = ({ isOpen, onClose }) => {

@@ -1,72 +1,58 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AccountModal.css'; 
-import { useAuth } from '../../context/AuthContext/AuthContext';
+import { useAuth } from '../../context/AuthContext/AuthContext'; 
+import { toast } from 'react-toastify'; // Importa toast para las notificaciones
+import './AccountModal.css';
 
 const AccountModal = ({ isOpen, onClose }) => {
-    const { user, logout } = useAuth();
-    const [userInfo, setUserInfo] = useState({ nombre: '', correo: '' });
     const navigate = useNavigate();
-    const modalRef = useRef(null);
+    const { user } = useAuth(); 
 
-    useEffect(() => {
-        if (user) {
-            const fetchUserData = async () => {
-                try {
-                    const response = await fetch(`http://localhost:3001/usuarios/${user.id}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        setUserInfo({
-                            nombre: data.nombre,
-                            correo: data.correo,
-                        });
-                    } else {
-                        console.error('Error fetching user data:', response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-            };
-
-            fetchUserData();
-        }
-    }, [user]);
+    const isAuthenticated = !!localStorage.getItem('token');
 
     const handleLogout = () => {
-        logout();
+        console.log('Cerrando sesión desde el modal');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         onClose();
+        toast.info('Has cerrado sesión con éxito.', {
+            autoClose: 1000, // Duración de la alerta en milisegundos (1 segundo)
+            hideProgressBar: true
+        });
+        navigate('/Login');
     };
 
-    const handleLoginRedirect = () => {
-        navigate('/Login');
+    const handleManageAccount = () => {
         onClose();
+        navigate('/AccountManage');
     };
 
     return (
-        <div className={`account-modal ${isOpen ? 'show' : 'close-animation'}`}>
-            <div className="account-modal__content" ref={modalRef}>
-                {user ? (
+        <div className={`account-modal ${isOpen ? 'show' : ''}`}>
+            <div className="account-modal__content">
+                {isAuthenticated ? (
                     <>
-                        <h2 className='welcome-account'>¡Bienvenido, {userInfo.nombre}!</h2>
-                        {userInfo.nombre && userInfo.correo ? (
-                            <>
-                                <p className='account-mail'>{userInfo.correo}</p>
-                            </>
-                        ) : (
-                            <p>Cargando información del usuario...</p>
-                        )}
-                        
-                        <a href='/AccountManage' className='account-management'>Gestionar Cuenta y Ordenes</a>
-                        {(user.rol === 'Administrador' || user.rol === 'Empleado') && (
-                            <a href="/ProductManage" className='management'>Ir a gestiones</a>
-                        )}
-                        <button onClick={handleLogout} className='logout-button'>Cerrar sesión</button>
+                        <h2 className="welcome-account">Bienvenido, {user?.nombre || 'Usuario'}</h2>
+                        <p className="account-mail">{user?.correo_usuarios || 'No disponible'}</p>
+                        <div className="account-management">
+                            <div className="management">Gestión de cuenta</div>
+                            <button className="manage-button" onClick={handleManageAccount}>
+                                Ir a Gestionar Cuenta
+                            </button>
+                            <button className="logout-button" onClick={handleLogout}>
+                                Cerrar sesión
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <>
-                        <h2>No has iniciado sesión</h2>
-                        <p>Por favor, inicia sesión para acceder a tu cuenta.</p>
-                        <button onClick={handleLoginRedirect} className='login-button'>Ir a Iniciar sesión</button>
+                        <h2 className="login-prompt">Inicie sesión para acceder a su cuenta</h2>
+                        <button className="login-button" onClick={() => {
+                            onClose();
+                            navigate('/Login');
+                        }}>
+                            Iniciar sesión
+                        </button>
                     </>
                 )}
             </div>

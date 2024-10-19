@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../context/AuthContext/AuthContext';
+import {useAuth} from '../../context/AuthContext/AuthContext';
 import './OrderHistory.css'; // Asegúrate de importar el archivo CSS
 
 const OrderHistory = () => {

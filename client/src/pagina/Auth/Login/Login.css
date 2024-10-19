@@ -29,7 +29,6 @@ main::before {
     z-index: -1; /* Envía la imagen al fondo */
 }
 
-
 .contenedor__todo {
     width: 100%;
     max-width: 850px;
@@ -37,7 +36,6 @@ main::before {
     margin-top: 80px;
     position: relative;
     transition: transform 0.5s ease-in-out;
-    position: relative; 
     z-index: 1;
 }
 
@@ -153,6 +151,7 @@ main::before {
 .conditions {
     font-size: 13px;
 }
+
 /* Trabajando en el responsive design */
 @media screen and (max-width: 850px) {
     main {

@@ -1,67 +1,108 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import { toast} from 'react-toastify'; // Importa toast y ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Asegúrate de que el estilo de toast esté incluido
+import AuthService from '../../services/AuthService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
+
+export const useAuth = () => {
+    return useContext(AuthContext);
+};
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate(); // Inicializa useNavigate
 
-    const login = async (credentials) => {
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+
+        if (storedUser && token) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+            } catch (err) {
+                console.error("Error al parsear el usuario de localStorage:", err);
+            }
+        }
+        setLoading(false);
+    }, []);
+
+    const showToast = (message, type) => {
+        const currentTime = Date.now();
+        if (!showToast.lastToast || currentTime - showToast.lastToast >= 5000) {
+            showToast.lastToast = currentTime;
+            switch (type) {
+                case 'success':
+                    toast.success(message, { autoClose: 1500 });
+                    break;
+                case 'error':
+                    toast.error(message, { autoClose: 1500 });
+                    break;
+                case 'info':
+                    toast.info(message, { autoClose: 1500 });
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    const handleLogin = async (correo_usuarios, contrasena) => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:3001/usuarios');
-            const foundUser = response.data.find(
-                (u) => u.correo === credentials.email && u.password === credentials.password
-            );
-            if (foundUser) {
-                setUser(foundUser);
-                localStorage.setItem('user', JSON.stringify(foundUser));
-                toast.success('Inicio de sesión exitoso!');
+            const data = await AuthService.loginUser(correo_usuarios, contrasena);
+            if (data.user) {
+                setUser(data.user);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('token', data.token);
+                showToast('Inicio de sesión exitoso!', 'success'); // Mensaje de éxito
+                
+                // Redirige al usuario después de un inicio de sesión exitoso
+                navigate('/'); // Asegúrate de cambiar '/' por la ruta a la que quieras redirigir
             } else {
-                toast.error('Credenciales incorrectas');
+                throw new Error('No se encontró el usuario en la respuesta.');
             }
-        } catch (error) {
-            console.error('Error logging in:', error);
-            toast.error('Error al intentar iniciar sesión. Inténtalo de nuevo.');
+        } catch (err) {
+            console.error("Error en inicio de sesión:", err);
+            showToast('Error al iniciar sesión. Verifica tus credenciales.', 'error'); // Mensaje de error
         } finally {
             setLoading(false);
         }
     };
 
-    const logout = () => {
+    const handleRegister = async (name, lastName, correo_usuarios, contrasena) => {
+        setLoading(true);
+        try {
+            const response = await AuthService.registerUser(name, lastName, correo_usuarios, contrasena);
+            const userData = response;
+
+            if (userData && userData.ID_Usuarios) {
+                showToast('Registro exitoso. Iniciando sesión automáticamente...', 'success');
+                await handleLogin(correo_usuarios, contrasena);
+            } else {
+                throw new Error('No se encontró el usuario en la respuesta.');
+            }
+        } catch (err) {
+            console.error("Error en registro:", err);
+            showToast('Error al registrar el usuario. Inténtalo de nuevo.', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleLogout = () => {
         setUser(null);
         localStorage.removeItem('user');
-        toast.info('Has cerrado sesión.');
+        localStorage.removeItem('token');
+        showToast('Has cerrado sesión con éxito.', 'info'); // Mensaje de alerta al cerrar sesión
     };
-
-    const register = async (userData) => {
-        try {
-            const userWithRole = { ...userData, rol: 'Usuario' };
-            await axios.post('http://localhost:3001/usuarios', userWithRole);
-            await login({ email: userData.correo, password: userData.password });
-            toast.success('Registro exitoso. Estás ahora logueado.');
-        } catch (error) {
-            console.error('Error registering:', error);
-            toast.error('Error al registrar el usuario. Inténtalo de nuevo.');
-        }
-    };
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
-    }, []);
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, register, loading }}>
+        <AuthContext.Provider value={{ user, handleLogin, handleLogout, handleRegister, loading }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
-export const useAuth = () => useContext(AuthContext);

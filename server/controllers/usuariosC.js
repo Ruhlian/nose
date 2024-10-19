@@ -1,128 +1,163 @@
-const connection = require('../config/conexion');
+const Usuario = require('../models/usuariosM');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const connection = require('../config/conexion');
 
 // Obtener todos los usuarios
 const getAllUsers = (req, res) => {
-    const query = 'SELECT * FROM Usuarios';
-
-    connection.query(query, (err, results) => {
+    console.log('Solicitud para obtener todos los usuarios recibida.');
+    console.log('Usuario autenticado:', req.user);
+    Usuario.getAllUsers((err, users) => {
         if (err) {
+            console.error('Error al obtener usuarios:', err);
             return res.status(500).json({ error: 'Error en la base de datos.' });
         }
-        res.json(results);
+        console.log('Usuarios obtenidos exitosamente:', users);
+        res.json(users);
+    });
+};
+
+// Obtener un usuario por ID
+const getUserById = (req, res) => {
+    const { id } = req.params;
+    console.log(`Solicitud para obtener usuario con ID: ${id}`);
+    console.log('Usuario autenticado:', req.user);
+
+    Usuario.findById(id, (err, user) => {
+        if (err) {
+            console.error('Error al buscar usuario por ID:', err);
+            return res.status(500).json({ error: 'Error en la base de datos.' });
+        }
+        if (!user) {
+            console.warn(`Usuario no encontrado con ID: ${id}`);
+            return res.status(404).json({ error: 'Usuario no encontrado.' });
+        }
+        console.log(`Usuario encontrado:`, user);
+        res.json(user);
     });
 };
 
 // Iniciar sesión
 const login = (req, res) => {
-    const { correo, contrasena } = req.body;
+    const { correo_usuarios, contrasena } = req.body;
+    console.log(`Solicitud de inicio de sesión recibida para: ${correo_usuarios}`);
 
-    const query = 'SELECT * FROM Usuarios WHERE correo = ?';
-
-    connection.query(query, [correo], async (err, results) => {
+    Usuario.findByEmail(correo_usuarios, async (err, user) => {
         if (err) {
+            console.error('Error al buscar usuario por correo:', err);
             return res.status(500).json({ error: 'Error en la base de datos.' });
         }
 
-        if (results.length === 0) {
+        console.log('Usuario encontrado:', user);
+
+        if (!user) {
+            console.warn('Usuario no encontrado con el correo proporcionado.');
             return res.status(401).json({ error: 'Correo o contraseña incorrectos.' });
         }
 
-        const user = results[0];
         const isMatch = await bcrypt.compare(contrasena, user.contrasena);
 
         if (!isMatch) {
+            console.warn('Contraseña incorrecta para el usuario:', correo_usuarios);
             return res.status(401).json({ error: 'Correo o contraseña incorrectos.' });
         }
 
-        const token = jwt.sign({ id: user.UsuarioId, rol: user.ID_Rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.ID_Usuarios, rol: user.ID_Rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.json({ token, message: 'Login exitoso' });
+        // Modificación aquí para incluir nombre, apellido y correo
+        res.json({
+            token,
+            user: {
+                id: user.ID_Usuarios, // Asegúrate que 'ID_Usuarios' sea el nombre del campo en la base de datos
+                nombre: user.Nombre,  // Asegúrate que 'Nombre' sea el nombre del campo en la base de datos
+                apellido: user.Apellido,  // Asegúrate que 'Apellido' sea el nombre del campo en la base de datos
+                correo_usuarios: user.Correo_Usuarios, // Asegúrate que 'Correo_Usuarios' sea el nombre del campo en la base de datos
+                rol: user.ID_Rol
+            },
+            message: 'Login exitoso'
+        });
     });
 };
 
 // Registrar un nuevo usuario
 const register = async (req, res) => {
-    const { nombre, apellido, correo, contrasena, ID_Rol } = req.body;
+    const { nombre, apellido, correo_usuarios, contrasena, ID_Rol } = req.body;
+    console.log(`Solicitud de registro recibida para: ${correo_usuarios}`);
 
-    // Establecer un valor por defecto para ID_Rol
-    const defaultRoleId = 3; // ID_Rol por defecto
+    const defaultRoleId = 3; 
+    const roleId = ID_Rol ? ID_Rol : defaultRoleId;
 
-    // Usar el ID_Rol proporcionado o el por defecto
-    const roleId = ID_Rol ? ID_Rol : defaultRoleId; // Si 'ID_Rol' es undefined o null, usar defaultRoleId
-
-    // Validar que todos los campos requeridos estén presentes
-    if (!nombre || !apellido || !correo || !contrasena) {
+    if (!nombre || !apellido || !correo_usuarios || !contrasena) {
+        console.warn('Datos de registro incompletos:', { nombre, apellido, correo_usuarios });
         return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
     }
 
     try {
-        // Comprobar si el correo ya está en uso
         const existingUser = await new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM Usuarios WHERE correo = ?';
-            connection.query(query, [correo], (err, results) => {
+            const query = 'SELECT * FROM Usuarios WHERE Correo_Usuarios = ?';
+            connection.query(query, [correo_usuarios], (err, results) => {
                 if (err) {
-                    console.error('Error al consultar el usuario existente:', err); // Mensaje de error
+                    console.error('Error al consultar el usuario existente:', err);
                     return reject(err);
                 }
-                resolve(results[0]); // Devolver el primer resultado o undefined
+                resolve(results[0]); 
             });
         });
 
         if (existingUser) {
+            console.warn('El correo ya está registrado:', correo_usuarios);
             return res.status(409).json({ error: 'El correo ya está registrado.' });
         }
 
-        // Encriptar la contraseña
         const hashedPassword = await bcrypt.hash(contrasena, 10);
+        console.log('Contraseña encriptada para el nuevo usuario.');
 
-        // Crear un nuevo usuario en la base de datos
         const newUser = await new Promise((resolve, reject) => {
-            const query = 'INSERT INTO Usuarios (correo, contrasena, nombre, apellido, id_rol) VALUES (?, ?, ?, ?, ?)';
-            connection.query(query, [correo, hashedPassword, nombre, apellido, roleId], (err, results) => {
+            const query = 'INSERT INTO Usuarios (Correo_Usuarios, contrasena, nombre, apellido, ID_Rol) VALUES (?, ?, ?, ?, ?)';
+            connection.query(query, [correo_usuarios, hashedPassword, nombre, apellido, roleId], (err, results) => {
                 if (err) {
-                    console.error('Error al registrar el usuario:', err); // Mensaje de error
+                    console.error('Error al registrar el usuario:', err);
                     return reject(err);
                 }
-                resolve({ id: results.insertId, correo, nombre, apellido, ID_Rol: roleId });
+                resolve({ ID_Usuarios: results.insertId, correo_usuarios, nombre, apellido, ID_Rol: roleId });
             });
         });
 
-        res.status(201).json({ message: 'Registro exitoso', user: newUser });
+        console.log('Registro exitoso del nuevo usuario:', newUser);
+        res.status(201).json(newUser); // Devolviendo ID_Usuarios
     } catch (err) {
-        console.error('Error al registrar el usuario:', err);
-        res.status(500).json({ error: 'Error al registrar el usuario.' });
+        console.error('Error en el registro del usuario:', err);
+        res.status(500).json({ error: 'Error en la base de datos.' });
     }
 };
 
 // Eliminar un usuario por ID
 const deleteUserById = (req, res) => {
     const { id } = req.params;
+    console.log(`Solicitud para eliminar usuario con ID: ${id}`);
+    console.log('Usuario autenticado:', req.user);
 
-    // Asegúrate de que este sea el nombre correcto de la columna en tu base de datos
-    const query = 'DELETE FROM Usuarios WHERE id_usuarios = ?'; 
+    const query = 'DELETE FROM Usuarios WHERE ID_Usuarios = ?';
 
     connection.query(query, [id], (err, results) => {
         if (err) {
-            console.error('Error en la base de datos:', err); // Mensaje de error detallado
-            return res.status(500).json({ error: 'Error en la base de datos.', details: err });
+            console.error('Error al eliminar el usuario:', err);
+            return res.status(500).json({ error: 'Error en la base de datos.' });
         }
-
-        // Verificar si se eliminó algún usuario
         if (results.affectedRows === 0) {
+            console.warn(`No se encontró usuario para eliminar con ID: ${id}`);
             return res.status(404).json({ error: 'Usuario no encontrado.' });
         }
-
-        // Mensaje de éxito
-        res.json({ message: 'Usuario eliminado exitosamente' });
+        console.log(`Usuario con ID ${id} eliminado con éxito.`);
+        res.status(200).json({ message: `Usuario con ID ${id} eliminado con éxito.` });
     });
 };
 
-// Exportar las funciones del controlador
+// Exportar las funciones de usuario
 module.exports = {
     getAllUsers,
+    getUserById,
     login,
     register,
-    deleteUserById
+    deleteUserById,
 };

@@ -11,10 +11,11 @@ class Usuario {
     }
 
     // Buscar usuario por correo
-    static findByEmail(correo, callback) {
-        const query = 'SELECT * FROM Usuarios WHERE correo = ?';
-        db.query(query, [correo], (err, results) => {
+    static findByEmail(correo_usuarios, callback) {
+        const query = 'SELECT * FROM Usuarios WHERE Correo_Usuarios = ?';
+        db.query(query, [correo_usuarios], (err, results) => {
             if (err) return callback(err, null);
+            console.log('Resultados de búsqueda por correo:', results); // Log para verificar resultados
             if (results.length === 0) return callback(null, null);
             callback(null, results[0]);
         });
@@ -22,20 +23,21 @@ class Usuario {
 
     // Crear nuevo usuario
     static createUser(userData, callback) {
-        const { correo, contrasena, nombre, apellido, rol } = userData;
-        const query = 'INSERT INTO Usuarios (correo, contrasena, nombre, apellido, id_rol) VALUES (?, ?, ?, ?, ?)';
-        db.query(query, [correo, contrasena, nombre, apellido, rol], (err, results) => {
+        const { correo_usuarios, contrasena, nombre, apellido, rol } = userData; 
+        const query = 'INSERT INTO Usuarios (Correo_Usuarios, contrasena, nombre, apellido, ID_Rol) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [correo_usuarios, contrasena, nombre, apellido, rol], (err, results) => {
             if (err) return callback(err, null);
-            callback(null, { id: results.insertId, ...userData });
+            callback(null, { ID_Usuarios: results.insertId, ...userData }); // Cambiado a 'ID_Usuarios'
         });
     }
 
-    // Eliminar usuario por ID
-    static deleteUserById(id, callback) {
-        const query = 'DELETE FROM Usuarios WHERE id_usuarios = ?';
+    // Buscar usuario por ID
+    static findById(id, callback) {
+        const query = 'SELECT * FROM Usuarios WHERE ID_Usuarios = ?'; // Cambiado a 'ID_Usuarios'
         db.query(query, [id], (err, results) => {
             if (err) return callback(err, null);
-            callback(null, results);
+            if (results.length === 0) return callback(null, null);
+            callback(null, results[0]);
         });
     }
 }

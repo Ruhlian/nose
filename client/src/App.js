@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Productos from './pagina/Productos/Productos';
@@ -17,84 +17,92 @@ import ProductDetails from './pagina/ProductDetails/ProductDetails';
 import ProtectedRoute from './componentes/ProtectedRoute/ProtectedRoute';
 import { CartProvider } from './context/CartContext/CartContext';
 import { AuthProvider } from './context/AuthContext/AuthContext';
-import { ToastContainer } from 'react-toastify';  // Importar ToastContainer
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ScrollToTop from './componentes/ScrollToTop/ScrollToTop' // Importar el nuevo componente
+import ScrollToTop from './componentes/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <Fragment>
-          <Router>
-            <ScrollToTop /> {/* Asegura que al cambiar de ruta, se scrollee hacia arriba */}
-            <Routes>
-              <Route path="/Login" exact element={
-                <>
-                  <Header />
-                  <Login />
-                  <Footer />
-                </>
-              } />
-
-              <Route path="/Nosotros" exact element={
-                <>
-                  <AboutUs />
-                </>
-              } />
-
-              <Route path="/Productos" exact element={
-                <>
-                  <Productos/>
-                </>
-              } />
-
-              <Route path="/Contacto" exact element={
-                <>
-                  <Contact />
-                </>
-              } />
-
-              <Route path="/" exact element={
-                <>
-                  <Index/>
-                </>
-              } />
-
-              <Route path="/SalesManagement" exact element={
-                <ProtectedRoute allowedRoles={['Administrador', 'Empleado']}>
-                  <HeaderManage />
-                  <SalesManagement />
-                </ProtectedRoute>
-              } />
-
-              <Route path="/ProductManage" exact element={
-                <ProtectedRoute allowedRoles={['Administrador', 'Empleado']}>
-                  <HeaderManage />
-                  <ProductManage />
-                </ProtectedRoute>
-              } />
-
-              <Route path="/UserManage" exact element={
-                <ProtectedRoute allowedRoles={['Administrador']}>
-                  <HeaderManage />
-                  <UserManage />
-                </ProtectedRoute>
-              } />
-
-              <Route path="/AccountManage" exact element={<AccountManage />} />
-
-              <Route path="/ProductDetails/:id" exact element={
-                <>
-                  <ProductDetails />
-                </>
-              } />
-            </Routes>
-          </Router>
-          <ToastContainer />
-        </Fragment>
-      </CartProvider>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <CartProvider>
+          <ScrollToTop />
+          <ToastContainer
+            position="top-right"
+            autoClose={1500} // Tiempo de cierre automático más rápido
+            hideProgressBar
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false} // No pausar al perder el foco
+            draggable
+            pauseOnHover={false} // No pausar al pasar el mouse
+          />
+          <Routes>
+            <Route path="/Login" element={
+              <>
+                <Header />
+                <Login />
+                <Footer />
+              </>
+            } />
+            <Route path="/Nosotros" element={
+              <>
+                <Header />
+                <AboutUs />
+                <Footer />
+              </>
+            } />
+            <Route path="/Productos" element={
+              <>
+                <Header />
+                <Productos />
+                <Footer />
+              </>
+            } />
+            <Route path="/Contacto" element={
+              <>
+                <Header />
+                <Contact />
+                <Footer />
+              </>
+            } />
+            <Route path="/" element={<Index />} />
+            <Route path="/SalesManagement" element={
+              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+                <HeaderManage />
+                <SalesManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="/ProductManage" element={
+              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+                <HeaderManage />
+                <ProductManage />
+              </ProtectedRoute>
+            } />
+            <Route path="/UserManage" element={
+              <ProtectedRoute allowedRoles={[1]}> {/* Solo Admin */}
+                <HeaderManage />
+                <UserManage />
+              </ProtectedRoute>
+            } />
+            <Route path="/AccountManage" element={
+              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+                <HeaderManage />
+                <AccountManage />
+              </ProtectedRoute>
+            } />
+            <Route path="/ProductDetails/:id" element={
+              <>
+                <Header />
+                <ProductDetails />
+                <Footer />
+              </>
+            } />
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

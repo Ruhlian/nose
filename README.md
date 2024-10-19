@@ -15,6 +15,7 @@ npm install react-router-dom
 npm install axios
 npm install react-toastify
 npm install react-icons
+npm install jwt-decode
 
 en otra terminal de visual code:
 cd client
