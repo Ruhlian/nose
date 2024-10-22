@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext/AuthContext';
 import './Login.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { validateCorreo, validateName, validateContrasena } from '../../../utils/helpers';
+import { useNavigate, Link } from 'react-router-dom'; // Importa Link
 
 const Login = () => {
     const [isRegisterView, setIsRegisterView] = useState(false);
@@ -11,8 +12,15 @@ const Login = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [contrasenaVisible, setContrasenaVisible] = useState(false);
-    const { handleLogin, handleRegister } = useAuth();
+    const { handleLogin, handleRegister, user } = useAuth();
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate('/'); // Cambia '/' por la ruta a la que quieras redirigir
+        }
+    }, [user, navigate]);
 
     const toggleView = () => {
         setIsRegisterView(prev => !prev);
@@ -25,11 +33,11 @@ const Login = () => {
 
         // Validaciones
         if (!validateCorreo(correo_usuarios)) {
-            setErrorMessage('Por favor, ingresa un correo electrónico válido (mínimo 8 caracteres antes del @).');
+            setErrorMessage('Por favor, ingresa un correo electrónico válido (mínimo 15 caracteres y máximo 35).');
             return;
         }
         if (!validateContrasena(contrasena)) {
-            setErrorMessage('La contraseña debe tener entre 10 y 25 caracteres, con letras, números y al menos un símbolo.');
+            setErrorMessage('La contraseña debe tener entre 10 y 35 caracteres, con letras, números y al menos un símbolo.');
             return;
         }
 
@@ -51,11 +59,11 @@ const Login = () => {
             return;
         }
         if (!validateCorreo(correo_usuarios)) {
-            setErrorMessage('Por favor, ingresa un correo electrónico válido (mínimo 8 caracteres antes del @).');
+            setErrorMessage('Por favor, ingresa un correo electrónico válido (mínimo 15 caracteres y máximo 35).');
             return;
         }
         if (!validateContrasena(contrasena)) {
-            setErrorMessage('La contraseña debe tener entre 10 y 25 caracteres, con letras, números y al menos un símbolo.');
+            setErrorMessage('La contraseña debe tener entre 10 y 35 caracteres, con letras, números y al menos un símbolo.');
             return;
         }
 
@@ -68,13 +76,7 @@ const Login = () => {
     };
 
     const handleContrasenaVisibility = () => {
-        // Muestra la contraseña
-        setContrasenaVisible(true);
-        
-        // Configura un temporizador para ocultarla después de 1 segundo (1000 ms)
-        setTimeout(() => {
-            setContrasenaVisible(false);
-        }, 1000);
+        setContrasenaVisible(prev => !prev); // Alternar visibilidad
     };
 
     return (
@@ -101,7 +103,7 @@ const Login = () => {
                             placeholder="Correo Electrónico"
                             value={correo_usuarios}
                             onChange={(e) => {
-                                if (e.target.value.length <= 25) { // Limitar a 25 caracteres
+                                if (e.target.value.length <= 35) { // Limitar a 35 caracteres
                                     setCorreoUsuarios(e.target.value);
                                 }
                             }}
@@ -113,7 +115,7 @@ const Login = () => {
                                 placeholder="Contraseña"
                                 value={contrasena}
                                 onChange={(e) => {
-                                    if (e.target.value.length <= 25) { // Limitar a 25 caracteres
+                                    if (e.target.value.length <= 35) { // Limitar a 35 caracteres
                                         setContrasena(e.target.value);
                                     }
                                 }}
@@ -125,6 +127,9 @@ const Login = () => {
                         </div>
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
                         <button type="submit">Entrar</button>
+                        <p>
+                            <Link to="/RecoverPassword">¿Olvidaste tu contraseña?</Link>
+                        </p>
                     </form>
 
                     <form className={`formulario__register ${!isRegisterView ? 'hidden' : ''}`} onSubmit={handleRegisterSubmit}>
@@ -156,7 +161,7 @@ const Login = () => {
                             placeholder="Correo"
                             value={correo_usuarios}
                             onChange={(e) => {
-                                if (e.target.value.length <= 25) { // Limitar a 25 caracteres
+                                if (e.target.value.length <= 35) { // Limitar a 35 caracteres
                                     setCorreoUsuarios(e.target.value);
                                 }
                             }}
@@ -168,7 +173,7 @@ const Login = () => {
                                 placeholder="Contraseña"
                                 value={contrasena}
                                 onChange={(e) => {
-                                    if (e.target.value.length <= 25) { // Limitar a 25 caracteres
+                                    if (e.target.value.length <= 35) { // Limitar a 35 caracteres
                                         setContrasena(e.target.value);
                                     }
                                 }}

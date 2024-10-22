@@ -1,0 +1,41 @@
+const jwt = require('jsonwebtoken');
+const User = require('../models/usuariosM'); // Asegúrate de que esta ruta sea correcta
+
+const loginController = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Aquí deberías buscar el usuario en tu base de datos
+        const usuario = await User.findOne({ correo_usuarios: email });
+        
+        // Verifica si el usuario existe y la contraseña es correcta (esto depende de tu implementación)
+        if (!usuario || !usuario.isPasswordValid(password)) { // Asegúrate de tener un método para validar la contraseña
+            return res.status(401).json({ message: 'Credenciales inválidas' });
+        }
+
+        // Generar el token
+        const token = jwt.sign(
+            { id: usuario.id, rol: usuario.rol, correo_usuarios: usuario.correo_usuarios }, // Incluye el correo
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' } // Ajusta el tiempo de expiración según sea necesario
+        );
+
+        // Responder con el token y el usuario
+        res.status(200).json({
+            token,
+            user: {
+                id: usuario.id,
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                correo_usuarios: usuario.correo_usuarios,
+                rol: usuario.rol,
+            },
+            message: 'Login exitoso',
+        });
+    } catch (error) {
+        console.error('Error en el inicio de sesión:', error);
+        res.status(500).json({ message: 'Error en el inicio de sesión' });
+    }
+};
+
+module.exports = { loginController };

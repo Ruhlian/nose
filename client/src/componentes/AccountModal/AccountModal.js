@@ -1,25 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext/AuthContext'; 
-import { toast } from 'react-toastify'; // Importa toast para las notificaciones
+import { toast } from 'react-toastify'; 
 import './AccountModal.css';
 
 const AccountModal = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
-    const { user } = useAuth(); 
+    const { user, handleLogout } = useAuth(); // Usa handleLogout del contexto
 
     const isAuthenticated = !!localStorage.getItem('token');
 
-    const handleLogout = () => {
+    const handleLogoutClick = () => {
         console.log('Cerrando sesión desde el modal');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        onClose();
-        toast.info('Has cerrado sesión con éxito.', {
-            autoClose: 1000, // Duración de la alerta en milisegundos (1 segundo)
-            hideProgressBar: true
-        });
-        navigate('/Login');
+        handleLogout(); // Llama a la función de logout del contexto
+        onClose(); // Cierra el modal
+        // La redirección se maneja dentro de handleLogout
     };
 
     const handleManageAccount = () => {
@@ -39,7 +34,7 @@ const AccountModal = ({ isOpen, onClose }) => {
                             <button className="manage-button" onClick={handleManageAccount}>
                                 Ir a Gestionar Cuenta
                             </button>
-                            <button className="logout-button" onClick={handleLogout}>
+                            <button className="logout-button" onClick={handleLogoutClick}>
                                 Cerrar sesión
                             </button>
                         </div>

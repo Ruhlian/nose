@@ -1,9 +1,9 @@
 // helpers.js
 
 // Función para validar el formato del correo electrónico
-// Acepta correos en el formato: nombre@dominio.com, mínimo 8 caracteres antes del @, debe incluir número
+// Acepta correos en el formato: nombre@dominio.com, mínimo 15 caracteres antes del @, debe incluir número
 export const validateCorreo = (correo_usuarios) => {
-    const emailRegex = /^(?=.*[0-9])[a-zA-Z0-9._%+-]{8,}@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|co|info|io|me|us)$/;
+    const emailRegex = /^(?=.*[0-9])[a-zA-Z0-9._%+-]{15,35}@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|co|info|io|me|us)$/;
     return emailRegex.test(correo_usuarios);
 };
 
@@ -12,8 +12,8 @@ export const validateCorreo = (correo_usuarios) => {
 export const validateName = (value) => /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,15}$/.test(value);
 
 // Función para validar la contraseña
-// Mínimo 10 caracteres, con letras, números y al menos un símbolo
+// Mínimo 8 caracteres, máximo 35 caracteres, con letras, números y al menos un símbolo
 export const validateContrasena = (value) => {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,25}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,35}$/;
     return passwordRegex.test(value);
 };

@@ -1,6 +1,8 @@
+// conexion.js
 const mysql = require('mysql');
-require('dotenv').config(); // Asegúrate de que dotenv se cargue aquí también
+require('dotenv').config(); // Asegúrate de que dotenv se cargue aquí
 
+// Configuración de conexión a MySQL
 const connection = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER,
@@ -17,4 +19,5 @@ connection.connect((err) => {
     console.log('Conectado a la base de datos MySQL');
 });
 
-module.exports = connection; // Exporta la conexión para usarla en otros módulos
+// Exportar la conexión a la base de datos
+module.exports = connection;

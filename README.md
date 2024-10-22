@@ -35,6 +35,7 @@ npm install morgan
 npm install mysql
 npm install dotenv
 npm install bcryptjs jsonwebtoken
+npm install bcrypt
 npm install express nodemailer cors body-parser mysql2
 npm install express
 npm install nodemailer
@@ -42,6 +43,8 @@ npm install cors
 npm install body-parser
 npm install mysql2
 npm install express-validator
+npm install nodemailer
+npm install node-cron
 
 EN WORKBENCH:
 Crear la base de datos llamada dbentquim.

@@ -1,0 +1,35 @@
+.breadcrumb {
+    padding: 10px 70px;
+    background-color: transparent;
+}
+
+.breadcrumb ol {
+    display: flex;
+    align-items: center;
+    list-style-type: none; /* Eliminar números */
+    padding: 0; /* Eliminar padding de la lista */
+    margin: 0; /* Eliminar margen de la lista */
+}
+
+.breadcrumb li {
+    margin-right: 10px;
+}
+
+.breadcrumb li::after {
+    content: "›"; /* Usar el símbolo estilizado "›" */
+    margin-left: 10px;
+}
+
+.breadcrumb li:last-child::after {
+    content: ""; /* Elimina el símbolo en el último elemento */
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: black; /* Color del enlace */
+}
+
+
+.breadcrumb a.active {
+    color: #007bff; /* Color del enlace activo */
+}

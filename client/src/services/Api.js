@@ -1,20 +1,25 @@
 import axios from 'axios';
 
+// Configurar la URL base de tu API desde una variable de entorno
 const api = axios.create({
-  baseURL: 'http://localhost:3002/api', // URL base de tu API
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3002/api', // URL base de tu API
 });
 
 // Interceptor para agregar el token de autorización en cada solicitud
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    // Manejo de errores en la solicitud
+    console.error('Error en la solicitud:', error);
+    return Promise.reject(error);
   }
-  return config;
-}, (error) => {
-  // Manejo de errores en la solicitud
-  return Promise.reject(error);
-});
+);
 
 // Interceptor para manejar errores de respuesta
 api.interceptors.response.use(

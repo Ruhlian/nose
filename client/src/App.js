@@ -14,12 +14,15 @@ import AccountManage from './pagina/AccountManage/AccountManage';
 import HeaderManage from './componentes/HeaderManage/HeaderManage';
 import Header from './componentes/Header/Header';
 import ProductDetails from './pagina/ProductDetails/ProductDetails'; 
+import ResetPassword from './componentes/ResetPassword/ResetPassword';
+import RecoverPassword from './componentes/RecoverPassword/RecoverPassword';
 import ProtectedRoute from './componentes/ProtectedRoute/ProtectedRoute';
 import { CartProvider } from './context/CartContext/CartContext';
 import { AuthProvider } from './context/AuthContext/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './componentes/ScrollToTop/ScrollToTop';
+import Breadcrumbs from './componentes/Breadcrumbs/Breadcrumbs';
 
 function App() {
   return (
@@ -29,15 +32,16 @@ function App() {
           <ScrollToTop />
           <ToastContainer
             position="top-right"
-            autoClose={1500} // Tiempo de cierre automático más rápido
+            autoClose={1500}
             hideProgressBar
             newestOnTop={true}
             closeOnClick
             rtl={false}
-            pauseOnFocusLoss={false} // No pausar al perder el foco
+            pauseOnFocusLoss={false}
             draggable
-            pauseOnHover={false} // No pausar al pasar el mouse
+            pauseOnHover={false}
           />
+          <Breadcrumbs />
           <Routes>
             <Route path="/Login" element={
               <>
@@ -69,25 +73,25 @@ function App() {
             } />
             <Route path="/" element={<Index />} />
             <Route path="/SalesManagement" element={
-              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+              <ProtectedRoute>
                 <HeaderManage />
                 <SalesManagement />
               </ProtectedRoute>
             } />
             <Route path="/ProductManage" element={
-              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+              <ProtectedRoute>
                 <HeaderManage />
                 <ProductManage />
               </ProtectedRoute>
             } />
             <Route path="/UserManage" element={
-              <ProtectedRoute allowedRoles={[1]}> {/* Solo Admin */}
+              <ProtectedRoute>
                 <HeaderManage />
                 <UserManage />
               </ProtectedRoute>
             } />
             <Route path="/AccountManage" element={
-              <ProtectedRoute allowedRoles={[1, 2]}> {/* Admin y Empleado */}
+              <ProtectedRoute>
                 <HeaderManage />
                 <AccountManage />
               </ProtectedRoute>
@@ -98,6 +102,20 @@ function App() {
                 <ProductDetails />
                 <Footer />
               </>
+            } />
+            <Route path="/RecoverPassword" element={
+              <>
+                <Header />
+                <RecoverPassword />
+                <Footer />
+              </>
+            } />
+            <Route path="/reset-password/:token" element={
+              <ProtectedRoute allowAccessWithoutAuth={true}>
+                <Header />
+                <ResetPassword />
+                <Footer />
+              </ProtectedRoute>
             } />
           </Routes>
         </CartProvider>
